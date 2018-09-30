@@ -1,0 +1,15 @@
+[package]
+name = "crav1e"
+version = "0.1.0"
+authors = ["Luca Barbato <lu_zero@gentoo.org>"]
+
+[lib]
+name = "rav1e"
+crate-type = ["cdylib"]
+
+[build-dependencies]
+cbindgen = "0.6.3"
+
+[dependencies.rav1e]
+git = "https://github.com/rust-av/rav1e"
+branch = "crav1e"

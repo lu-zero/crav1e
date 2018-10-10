@@ -11,5 +11,4 @@ crate-type = ["cdylib"]
 cbindgen = "0.6.3"
 
 [dependencies.rav1e]
-git = "https://github.com/rust-av/rav1e"
-branch = "crav1e"
+git = "https://github.com/xiph/rav1e"

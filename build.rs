@@ -6,7 +6,7 @@ fn main() {
     cbindgen::Builder::new()
         .with_crate(crate_dir)
         .with_parse_deps(true)
-        .with_header("")
+        .with_header("// SPDX-License-Identifier: MIT")
         .with_include_guard("RAV1E_H")
         .with_language(cbindgen::Language::C)
         .generate()

@@ -1,6 +1,9 @@
 # C rav1e API
 
-[cbindgen]()-based API for C/C++ users.
+[![LICENSE](https://img.shields.io/badge/license-BSD2-blue.svg)](LICENSE)
+[![dependency status](https://deps.rs/repo/github/lu-zero/crav1e/status.svg)](https://deps.rs/repo/github/lu-zero/crav1e)
+
+[cbindgen](https://github.com/eqrion/cbindgen)-based API for C/C++ users.
 
 ## Status
 

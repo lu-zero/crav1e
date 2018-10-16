@@ -26,6 +26,7 @@ cargo build --release
 ```
 
 The header will be available as `include/rav1e.h`, the library will be in `target/<debug or release>/librav1e.<so or dylib>`
+Look in `c-examples` for working examples.
 
 ## Developing
 I suggest to use the cargo [paths override](https://doc.rust-lang.org/cargo/reference/config.html) to have a local `rav1e`:

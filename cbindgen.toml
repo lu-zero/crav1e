@@ -1,0 +1,13 @@
+header = "// SPDX-License-Identifier: MIT"
+include_guard = "RAV1E_H"
+tab_width = 4
+style = "Type"
+language = "C"
+
+[parse]
+parse_deps = true
+include = ['rav1e']
+
+[export]
+prefix = "Ra"
+item_types = ["enums", "structs", "unions", "typedefs", "opaque", "functions"]

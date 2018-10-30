@@ -2,13 +2,13 @@
 //
 // Usage:
 // $ cargo build --release
-// $ cc -I ../include -L../target/release -lrav1e simple_encoding.c -o simple_encoding
+// $ cc -Wall -I ../include -L../target/release -lrav1e simple_encoding.c -o simple_encoding
 
 #include <rav1e.h>
 #include <stdio.h>
 
 int main() {
-    RaConfig *rac = rav1e_config_default(64, 48, 8, Cs420, (RaRatio){ 1, 60 });
+    RaConfig *rac = rav1e_config_default(64, 48, 8, RA_CHROMA_SAMPLING_CS420, (RaRational){ 1, 60 });
     rav1e_config_parse(rac, "speed", "9");
 
     RaContext *rax = rav1e_context_new(rac);
@@ -24,10 +24,10 @@ int main() {
         printf("Encoding frame\n");
         rav1e_receive_packet(rax, &p);
         printf("Packet %lld\n", p->number);
-        rav1e_packet_drop(p);
+        rav1e_packet_unref(p);
     }
 
-    rav1e_frame_drop(f);
-    rav1e_context_drop(rax);
-    rav1e_config_drop(rac);
+    rav1e_frame_unref(f);
+    rav1e_context_unref(rax);
+    rav1e_config_unref(rac);
 }

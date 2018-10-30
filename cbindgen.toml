@@ -11,3 +11,7 @@ include = ['rav1e']
 [export]
 prefix = "Ra"
 item_types = ["enums", "structs", "unions", "typedefs", "opaque", "functions"]
+
+[enum]
+rename_variants = "ScreamingSnakeCase"
+prefix_with_name = true

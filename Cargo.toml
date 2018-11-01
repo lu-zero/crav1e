@@ -10,5 +10,8 @@ crate-type = ["cdylib", "staticlib"]
 [build-dependencies]
 cbindgen = { git="https://github.com/lu-zero/cbindgen" }
 
+[dependencies]
+libc = "0.2"
+
 [dependencies.rav1e]
 git = "https://github.com/xiph/rav1e"

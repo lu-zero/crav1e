@@ -8,7 +8,7 @@ name = "rav1e"
 crate-type = ["cdylib"]
 
 [build-dependencies]
-cbindgen = "0.6.3"
+cbindgen = { git="https://github.com/lu-zero/cbindgen" }
 
 [dependencies.rav1e]
 git = "https://github.com/xiph/rav1e"

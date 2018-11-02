@@ -40,8 +40,8 @@ $ git clone https://github.com/xiph/rav1e
 $ git clone https://github.com/lu_zero/crav1e
 # Setup the override
 $ cd crav1e
-$ mkdir .cargo/rav1e
-$ echo 'paths=[../rav1e]'
+$ mkdir .cargo
+$ echo 'paths=[../rav1e]' > config
 # Check it is doing the right thing
 $ cargo build
 ```

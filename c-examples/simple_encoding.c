@@ -6,6 +6,7 @@
 
 #include <rav1e.h>
 #include <stdio.h>
+#include <inttypes.h>
 
 int main() {
     RaConfig *rac = rav1e_config_default(64, 48, 8, RA_CHROMA_SAMPLING_CS420, (RaRational){ 1, 60 });
@@ -23,7 +24,7 @@ int main() {
         RaPacket *p;
         printf("Encoding frame\n");
         rav1e_receive_packet(rax, &p);
-        printf("Packet %lld\n", p->number);
+        printf("Packet %"PRIu64"\n", p->number);
         rav1e_packet_unref(p);
     }
 

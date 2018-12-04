@@ -13,19 +13,35 @@ The API is far from stable
 - [x] OBU Sequence Header for mkv/mp4 support
 - [x] Documentation
 - [ ] TimeInfo/generic data pinning
-- [ ] pkg-conf `.pc` generation
+- [x] pkg-conf `.pc` generation
 - [ ] Examples
-- [ ] Install target
+- [x] Install target
 
 ## Usage
 You may generate the library and the header file using
 
+### Makefile
+A quite simple makefile is provided:
+
+``` sh
+# Build librav1e.a, rav1e.h and rav1e.pc
+$ make
 ```
-cargo build
+
+``` sh
+# Install librav1e.a, rav1e.h and rav1e.pc
+$ make DESTDIR=${D} prefix=${prefix} libdir=${libdir} install
+```
+
+### cargo
+Currently `cargo install` does not work for libraries.
+
+```
+$ cargo build
 ```
 or
 ```
-cargo build --release
+$ cargo build --release
 ```
 
 The header will be available as `include/rav1e.h`, the library will be in `target/<debug or release>/librav1e.<so or dylib>`

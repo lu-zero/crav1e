@@ -1,0 +1,11 @@
+prefix=@prefix@
+libdir=@libdir@
+incdir=@incdir@/rav1e
+
+Name: crav1e
+Description: C-bindings for rav1e
+Version: @VERSION@
+URL: https://github.com/lu-zero/crav1e
+Libs: -L${libdir} -lrav1e
+Libs.private: @PRIVATE_LIBS@
+Cflags: -I${incdir}

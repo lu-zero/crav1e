@@ -2,4 +2,5 @@
 **/*.rs.bk
 Cargo.lock
 rav1e.h
+rav1e.pc
 simple_encoding

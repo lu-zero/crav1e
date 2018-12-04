@@ -5,7 +5,7 @@ authors = ["Luca Barbato <lu_zero@gentoo.org>"]
 
 [lib]
 name = "rav1e"
-crate-type = ["cdylib", "staticlib"]
+crate-type = ["staticlib"]
 
 [build-dependencies]
 cbindgen = { git="https://github.com/lu-zero/cbindgen" }
@@ -16,3 +16,7 @@ libc = "0.2"
 [dependencies.rav1e]
 git = "https://github.com/xiph/rav1e"
 default-features = false
+
+[profile.release]
+debug = true
+lto = true

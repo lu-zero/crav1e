@@ -10,7 +10,7 @@ BINDIR=$(DESTDIR)$(bindir)
 INCDIR=$(DESTDIR)$(incdir)/rav1e
 LIBDIR=$(DESTDIR)$(libdir)
 
-build_mode=debug
+build_mode?=debug
 
 all: target/$(build_mode)/librav1e.a rav1e.pc include/rav1e.h
 

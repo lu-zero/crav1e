@@ -9,7 +9,11 @@
 #include <inttypes.h>
 
 int main() {
-    RaConfig *rac = rav1e_config_default(64, 48, 8, RA_CHROMA_SAMPLING_CS420, (RaRational){ 1, 60 });
+    RaConfig *rac = rav1e_config_default(64*2, 48*2, 8,
+        RA_CHROMA_SAMPLING_CS420,
+        RA_CHROMA_SAMPLE_POSITION_UNKNOWN,
+        (RaRational){ 1, 60 });
+
     rav1e_config_parse(rac, "speed", "9");
 
     RaContext *rax = rav1e_context_new(rac);

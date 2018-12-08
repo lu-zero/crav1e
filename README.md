@@ -62,7 +62,7 @@ $ git clone https://github.com/lu_zero/crav1e
 # Setup the override
 $ cd crav1e
 $ mkdir .cargo
-$ echo 'paths=[../rav1e]' > config
+$ echo 'paths=["../rav1e"]' > .cargo/config
 # Check it is doing the right thing
 $ cargo build
 ```

@@ -19,4 +19,3 @@ default-features = false
 
 [profile.release]
 debug = true
-lto = true

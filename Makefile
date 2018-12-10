@@ -31,11 +31,11 @@ target/$(build_mode)/librav1e.a: Cargo.toml
 	    cargo build; \
 	fi
 
-rav1e.pc: data/rav1e.pc.in Makefile Cargo.toml
+rav1e.pc: data/rav1e.pc.in Makefile Cargo.toml dummy/Cargo.toml dummy/src/lib.rs
 	sed -e "s;@prefix@;$(prefix);" \
 	    -e "s;@libdir@;$(libdir);" \
             -e "s;@VERSION@;$(VERSION);" \
-            -e "s;@PRIVATE_LIBS@;$$(touch src/lib.rs && cargo rustc -- --print native-static-libs 2>&1| grep native-static-libs | cut -d ':' -f 3);" data/rav1e.pc.in > $@
+            -e "s;@PRIVATE_LIBS@;$$(cd dummy; touch src/lib.rs && cargo rustc -- --print native-static-libs 2>&1| grep native-static-libs | cut -d ':' -f 3);" data/rav1e.pc.in > $@
 
 simple_encoding: c-examples/simple_encoding.c target/$(build_mode)/librav1e.a rav1e.pc
 	$(CC) -std=c99 -Ltarget/$(build_mode)/ -lrav1e `grep Libs.private rav1e.pc | cut -d ':' -f 2` -Iinclude $< -o $@

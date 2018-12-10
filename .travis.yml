@@ -1,16 +1,23 @@
 language: rust
+os:
+  - linux
+  - osx
+
 addons:
   apt:
     packages: binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev make
 before_install:
-    - wget https://www.nasm.us/pub/nasm/releasebuilds/2.13.03/nasm-2.13.03.tar.xz
-    - tar -xvf nasm-2.13.03.tar.xz
-    - cd nasm-2.13.03
-    - ./configure
-    - make
-    - sudo make install
-    - cd ..
-    - nasm --version
+    - |
+        if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+            wget https://www.nasm.us/pub/nasm/releasebuilds/2.13.03/nasm-2.13.03.tar.xz
+            tar -xvf nasm-2.13.03.tar.xz
+            cd nasm-2.13.03
+            ./configure
+            make
+            sudo make install
+            cd ..
+            nasm --version
+        fi
 script:
     - |
         make examples && ./simple_encoding

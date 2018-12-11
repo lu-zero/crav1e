@@ -15,11 +15,13 @@ The API is far from stable
 - [x] Documentation
 - [ ] TimeInfo/generic data pinning
 - [x] pkg-conf `.pc` generation
-- [ ] Examples
+- [x] Examples
 - [x] Install target
 
 ## Usage
-You may generate the library and the header file using
+You may generate the library and the header file using.
+
+> Currently it **requires** nightly to expand the macros.
 
 ### Makefile
 A quite simple makefile is provided:

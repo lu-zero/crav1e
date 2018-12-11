@@ -10,7 +10,7 @@ BINDIR=$(DESTDIR)$(bindir)
 INCDIR=$(DESTDIR)$(incdir)/rav1e
 LIBDIR=$(DESTDIR)$(libdir)
 
-build_mode=debug
+build_mode:=release
 
 all: target/$(build_mode)/librav1e.a rav1e.pc include/rav1e.h
 
@@ -18,24 +18,20 @@ examples: simple_encoding
 
 clean:
 	cargo clean
-	-rm rav1e.pc
-	-rm include/rav1e.h
-	-rm simple_encoding
+	-rm -f rav1e.pc
+	-rm -f include/rav1e.h
+	-rm -f simple_encoding
 
 include/rav1e.h: target/$(build_mode)/librav1e.a
 
 target/$(build_mode)/librav1e.a: Cargo.toml
-	if [ "$(build_mode)" = "release" ]; then \
-	    cargo build --release; \
-	else \
-	    cargo build; \
-	fi
+	cargo build --release
 
 rav1e.pc: data/rav1e.pc.in Makefile Cargo.toml dummy/Cargo.toml dummy/src/lib.rs
 	sed -e "s;@prefix@;$(prefix);" \
 	    -e "s;@libdir@;$(libdir);" \
             -e "s;@VERSION@;$(VERSION);" \
-            -e "s;@PRIVATE_LIBS@;$$(cd dummy; touch src/lib.rs && cargo rustc -- --print native-static-libs 2>&1| grep native-static-libs | cut -d ':' -f 3);" data/rav1e.pc.in > $@
+            -e "s;@PRIVATE_LIBS@;$$(cd dummy; touch src/lib.rs && cargo rustc --release -- --print native-static-libs 2>&1| grep native-static-libs | cut -d ':' -f 3);" data/rav1e.pc.in > $@
 
 simple_encoding: c-examples/simple_encoding.c target/$(build_mode)/librav1e.a rav1e.pc
 	$(CC) -std=c99 $< -o $@ -Ltarget/$(build_mode)/ -lrav1e `grep Libs.private rav1e.pc | cut -d ':' -f 2` -Iinclude

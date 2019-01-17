@@ -28,7 +28,6 @@ build_script:
     
 # Temporary search to find artifacts
 after_build:
-   - dir *.a /s /b | find ^"temp^" /v /i | findstr /e .a
    - dir *.lib /s /b | find ^"temp^" /v /i | findstr /e .lib
 
 # test_script:

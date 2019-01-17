@@ -25,8 +25,8 @@ install:
 
 build_script:
     - git submodule update --init
-    - cargo build --release --target=%target% --verbose
-
+    - make examples
+    
 # Temporary search to find artifacts
 after_build:
     - dir *.exe /s /b | find ^"temp^" /v /i | findstr /e .exe
@@ -36,5 +36,5 @@ after_build:
 #    - cargo test --target=%target% --verbose
 
 artifacts:
-    - path: target\$(target)\release\rav1e.exe
+    - path: target\$(target)\release\*.exe
       name: rav1e-$(platform)

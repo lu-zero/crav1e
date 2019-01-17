@@ -1,25 +1,26 @@
 language: rust
 rust:
-  - nightly
-os:
-  - linux
-  - osx
-
+  - nightly-2018-12-15
+  
 addons:
   apt:
     packages: binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev make
 before_install:
     - |
         if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-            wget https://www.nasm.us/pub/nasm/releasebuilds/2.13.03/nasm-2.13.03.tar.xz
-            tar -xvf nasm-2.13.03.tar.xz
-            cd nasm-2.13.03
+            wget https://www.nasm.us/pub/nasm/releasebuilds/2.14.02/nasm-2.14.02.tar.xz
+            tar -xvf nasm-2.14.02.tar.xz
+            cd nasm-2.14.02
             ./configure
             make
             sudo make install
             cd ..
             nasm --version
         fi
-script:
-    - |
-        make examples && ./simple_encoding
+jobs:
+  include:
+      - name: "Linux build"
+        script: make examples && ./simple_encoding
+      - name: "macOS build"
+        os: osx
+        script: make examples && ./simple_encoding

@@ -24,7 +24,6 @@ install:
     - rustup target add %target%
 
 build_script:
-    - git submodule update --init
     - cargo build --release --target=%target%
     
 # Temporary search to find artifacts
@@ -32,7 +31,6 @@ after_build:
     - dir *.exe /s /b | find ^"temp^" /v /i | findstr /e .exe
 
 # test_script:
-#    - git submodule update --init
 #    - cargo test --target=%target% --verbose
 
 artifacts:

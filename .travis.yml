@@ -24,7 +24,5 @@ jobs:
       - name: "Makefile build (macOS)"
         os: osx
         script: make examples && ./simple_encoding
-      - name: "Cargo build"
-        script: cargo build --verbose
       - name: "Cargo test"
         script: cargo test --verbose

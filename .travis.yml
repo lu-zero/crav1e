@@ -20,6 +20,12 @@ before_install:
             cd ..
             nasm --version
         fi
-script:
-    - |
-        make examples && ./simple_encoding
+
+jobs:
+  include:
+      - name: "Make examples & simple_encoding"
+        script: make examples && ./simple_encoding
+      - name: "Build"
+        script: cargo build --verbose
+      - name: "Test"
+        script: cargo test --verbose

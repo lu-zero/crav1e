@@ -20,12 +20,12 @@ before_install:
 
 jobs:
   include:
-      - name: "Make examples (Linux)"
+      - name: "Makefile build (Linux)"
         script: make examples && ./simple_encoding
-      - name: "Make examples (macOS)"
+      - name: "Makefile build (macOS)"
         os: osx
         script: make examples && ./simple_encoding
-      - name: "Build"
+      - name: "Cargo build"
         script: cargo build --verbose
-      - name: "Test"
+      - name: "Cargo test"
         script: cargo test --verbose

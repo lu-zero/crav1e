@@ -1,0 +1,41 @@
+image: Visual Studio 2017
+
+environment:
+  host: x86_64-pc-windows-msvc
+  matrix:
+    - platform: x86_64
+      target: x86_64-pc-windows-msvc
+      channel: nightly-2018-12-15
+    - platform: arm64
+      target: aarch64-pc-windows-msvc
+      channel: nightly-2018-12-15
+matrix:
+  allow_failures:
+    - platform: arm64
+
+install:
+    - appveyor DownloadFile https://win.rustup.rs/ -FileName rustup-init.exe
+    - appveyor DownloadFile https://www.nasm.us/pub/nasm/releasebuilds/2.14.02/win64/nasm-2.14.02-win64.zip -FileName nasm.zip
+    - 7z e -y nasm.zip
+    - rustup-init -yv --default-toolchain %channel% --default-host %host%
+    - set PATH=%PATH%;%USERPROFILE%\.cargo\bin;%APPVEYOR_BUILD_FOLDER%
+    - rustc -vV
+    - cargo -vV
+    - rustup target add %target%
+
+build_script:
+    - cargo build --release --target=%target%
+    
+# Temporary search to find artifacts
+# after_build:
+#    - dir *.a /s /b | find ^"temp^" /v /i | findstr /e librav1e
+#    - dir *.lib /s /b | find ^"temp^" /v /i | findstr /e librav1e
+
+# test_script:
+#    - cargo test --target=%target% --verbose
+
+artifacts:
+    - path: target\**\librav1e.a
+      name: crav1e-$(platform)
+    - path: target\**\librav1e.lib
+      name: crav1e-$(platform)

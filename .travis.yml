@@ -1,7 +1,7 @@
 language: rust
 rust:
   - nightly-2018-12-15
-  
+
 addons:
   apt:
     packages: binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev make

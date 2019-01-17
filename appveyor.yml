@@ -5,10 +5,10 @@ environment:
   matrix:
     - platform: x86_64
       target: x86_64-pc-windows-msvc
-      channel: nightly
+      channel: nightly-2018-12-15
     - platform: arm64
       target: aarch64-pc-windows-msvc
-      channel: nightly
+      channel: nightly-2018-12-15
 matrix:
   allow_failures:
     - platform: arm64

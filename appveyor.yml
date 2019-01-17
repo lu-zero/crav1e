@@ -35,8 +35,6 @@ after_build:
 #    - git submodule update --init
 #    - cargo test --target=%target% --verbose
 
-cd 
-
 artifacts:
     - path: target\$(target)\release\rav1e.exe
       name: rav1e-$(platform)

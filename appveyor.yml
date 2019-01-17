@@ -25,16 +25,19 @@ install:
 
 build_script:
     - cargo build --release --target=%target%
-    
-# Temporary search to find artifacts
-after_build:
-   - dir *.lib /s /b | find ^"temp^" /v /i | findstr /e .lib
 
-# test_script:
-#    - cargo test --target=%target% --verbose
+test_script:
+   - cargo test --target=%target% --verbose
 
 artifacts:
-    - path: \**\librav1e.a
-      name: crav1e-$(platform)
-    - path: \**\librav1e.lib
-      name: crav1e-$(platform)
+    - path: target\$(target)\release\rav1e.lib
+      name: librav1e-$(platform)
+
+deploy:
+  - provider: GitHub
+    artifact: target\$(target)\release\rav1e.lib
+    auth_token:
+      secure: hY5Mk6KOwgQ97TzEBsM7Woqr1ZIm5QTvHg8EvxMV1x8j3wk/3mNBMqWFFbEIBK0i
+    prerelease: true
+    on:
+      appveyor_repo_tag: true

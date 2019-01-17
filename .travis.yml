@@ -1,7 +1,10 @@
 language: rust
 rust:
-  - nightly
-  
+  - nightly-2018-12-15
+os:
+  - linux
+  - osx
+
 addons:
   apt:
     packages: binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev make
@@ -17,15 +20,6 @@ before_install:
             cd ..
             nasm --version
         fi
-
-jobs:
-  include:
-      - name: "Makefile build (Linux)"
-        script: make examples && ./simple_encoding
-      - name: "Makefile build (macOS)"
-        os: osx
-        script: make examples && ./simple_encoding
-      - name: "Cargo build"
-        script: cargo build --verbose
-      - name: "Cargo test"
-        script: cargo test --verbose
+script:
+    - |
+        make examples && ./simple_encoding

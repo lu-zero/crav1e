@@ -29,6 +29,8 @@ build_script:
 artifacts:
     - path: target\$(target)\release\rav1e.lib
       name: librav1e-$(platform)
+    - path: include\rav1e.h
+      name: librav1e-$(platform)-header
 
 deploy:
   - provider: GitHub

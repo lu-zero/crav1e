@@ -27,15 +27,15 @@ build_script:
     - cargo build --release --target=%target%
     
 # Temporary search to find artifacts
-# after_build:
-#    - dir *.a /s /b | find ^"temp^" /v /i | findstr /e librav1e
-#    - dir *.lib /s /b | find ^"temp^" /v /i | findstr /e librav1e
+after_build:
+   - dir *.a /s /b | find ^"temp^" /v /i | findstr /e .a
+   - dir *.lib /s /b | find ^"temp^" /v /i | findstr /e .lib
 
 # test_script:
 #    - cargo test --target=%target% --verbose
 
 artifacts:
-    - path: target\**\librav1e.a
+    - path: \**\librav1e.a
       name: crav1e-$(platform)
-    - path: target\**\librav1e.lib
+    - path: \**\librav1e.lib
       name: crav1e-$(platform)

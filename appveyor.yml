@@ -26,9 +26,6 @@ install:
 build_script:
     - cargo build --release --target=%target%
 
-test_script:
-   - cargo test --target=%target% --verbose
-
 artifacts:
     - path: target\$(target)\release\rav1e.lib
       name: librav1e-$(platform)

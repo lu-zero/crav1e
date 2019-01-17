@@ -1,4 +1,4 @@
-image: Ubuntu1804
+image: Visual Studio 2017
 
 environment:
   host: x86_64-pc-windows-msvc
@@ -25,7 +25,7 @@ install:
 
 build_script:
     - git submodule update --init
-    - make examples
+    - cargo build --release --target=%target%
     
 # Temporary search to find artifacts
 after_build:
@@ -37,4 +37,4 @@ after_build:
 
 artifacts:
     - path: target\$(target)\release\*.exe
-      name: rav1e-$(platform)
+      name: crav1e-$(platform)

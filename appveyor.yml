@@ -1,4 +1,4 @@
-image: Visual Studio 2017
+image: Ubuntu1804
 
 environment:
   host: x86_64-pc-windows-msvc

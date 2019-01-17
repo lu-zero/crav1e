@@ -28,8 +28,8 @@ build_script:
     
 # Temporary search to find artifacts
 after_build:
-    - dir librav1e.a /s /b | find ^"temp^" /v /i | findstr /e librav1e
-    - dir librav1e.lib /s /b | find ^"temp^" /v /i | findstr /e librav1e
+    - dir *.a /s /b | find ^"temp^" /v /i | findstr /e librav1e
+    - dir *.lib /s /b | find ^"temp^" /v /i | findstr /e librav1e
 
 # test_script:
 #    - cargo test --target=%target% --verbose

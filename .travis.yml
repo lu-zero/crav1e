@@ -1,6 +1,4 @@
 language: rust
-rust:
-  - nightly-2018-12-15
 
 addons:
   apt:
@@ -17,10 +15,20 @@ before_install:
             cd ..
             nasm --version
         fi
+        
+matrix:
+  allow_failures:
+  - rust: nightly
+
 jobs:
   include:
       - name: "Linux build"
+        rust: nightly-2018-12-15
         script: make examples && ./simple_encoding
       - name: "macOS build"
         os: osx
+        rust: nightly-2018-12-15
+        script: make examples && ./simple_encoding
+      - name: "Linux build (Rust nightly)"
+        rust: nightly
         script: make examples && ./simple_encoding

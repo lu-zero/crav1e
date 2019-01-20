@@ -15,6 +15,11 @@ before_install:
             cd ..
             nasm --version
         fi
+        
+matrix:
+  allow_failures:
+  - rust: nightly
+
 jobs:
   include:
       - name: "Linux build"
@@ -24,7 +29,6 @@ jobs:
         os: osx
         rust: nightly-2018-12-15
         script: make examples && ./simple_encoding
-  allow_failures:
       - name: "Linux build (Rust nightly)"
         rust: nightly
         script: make examples && ./simple_encoding

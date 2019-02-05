@@ -5,10 +5,10 @@ environment:
   matrix:
     - platform: x86_64
       target: x86_64-pc-windows-msvc
-      channel: nightly-2018-12-15
+      channel: nightly
     - platform: arm64
       target: aarch64-pc-windows-msvc
-      channel: nightly-2018-12-15
+      channel: nightly
 matrix:
   allow_failures:
     - platform: arm64
@@ -34,9 +34,9 @@ artifacts:
 
 deploy:
   - provider: GitHub
-    artifact: target\$(target)\release\rav1e.lib
+    artifact: librav1e-$(platform)*
     auth_token:
-      secure: qP65iyZH7HavBuQ8G1XQgkGqJLwdGtV9K5hyqqZavqCm7SakY+tqCwDCRcasSvTg
+      secure: 'qP65iyZH7HavBuQ8G1XQgkGqJLwdGtV9K5hyqqZavqCm7SakY+tqCwDCRcasSvTg'
     prerelease: true
     on:
       appveyor_repo_tag: true

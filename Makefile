@@ -34,7 +34,7 @@ rav1e.pc: data/rav1e.pc.in Makefile Cargo.toml dummy/Cargo.toml dummy/src/lib.rs
             -e "s;@PRIVATE_LIBS@;$$(cd dummy; touch src/lib.rs && cargo rustc --release -- --print native-static-libs 2>&1| grep native-static-libs | cut -d ':' -f 3);" data/rav1e.pc.in > $@
 
 simple_encoding: c-examples/simple_encoding.c target/$(build_mode)/librav1e.a rav1e.pc
-	$(CC) -std=c99 $< -o $@ -Ltarget/$(build_mode)/ -lrav1e `grep Libs.private rav1e.pc | cut -d ':' -f 2` -Iinclude
+	$(CC) -g -O0 -std=c99 $< -o $@ -Ltarget/$(build_mode)/ -lrav1e `grep Libs.private rav1e.pc | cut -d ':' -f 2` -Iinclude
 
 install: target/$(build_mode)/librav1e.a rav1e.pc include/rav1e.h
 	-mkdir -p $(INCDIR) $(LIBDIR)/pkgconfig

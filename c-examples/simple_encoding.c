@@ -14,7 +14,7 @@ int main() {
     rav1e_config_parse(rac, "width", "64");
     rav1e_config_parse(rac, "height", "96");
     rav1e_config_parse(rac, "speed", "9");
-    rav1e_config_parse(rac, "low_latency", "true");
+//    rav1e_config_parse(rac, "low_latency", "true");
 
     RaContext *rax = rav1e_context_new(rac);
     RaFrame *f = rav1e_frame_new(rax);
@@ -27,9 +27,10 @@ int main() {
     for (int i = 0; i < 30; i++) {
         RaPacket *p;
         printf("Encoding frame\n");
-        rav1e_receive_packet(rax, &p);
-        printf("Packet %"PRIu64"\n", p->number);
-        rav1e_packet_unref(p);
+        if (rav1e_receive_packet(rax, &p) > 0) {
+            printf("Packet %"PRIu64"\n", p->number);
+            rav1e_packet_unref(p);
+        }
     }
 
     rav1e_frame_unref(f);

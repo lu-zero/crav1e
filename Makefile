@@ -24,7 +24,7 @@ clean:
 
 include/rav1e.h: target/$(build_mode)/librav1e.a
 
-target/$(build_mode)/librav1e.a: Cargo.toml
+target/$(build_mode)/librav1e.a: Cargo.toml src/lib.rs
 	cargo build --release
 
 rav1e.pc: data/rav1e.pc.in Makefile Cargo.toml dummy/Cargo.toml dummy/src/lib.rs

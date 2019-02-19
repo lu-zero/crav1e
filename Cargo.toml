@@ -15,6 +15,7 @@ libc = "0.2"
 
 [dependencies.rav1e]
 git = "https://github.com/xiph/rav1e"
+tag = "20190219"
 default-features = false
 
 [profile.release]

@@ -8,7 +8,7 @@ name = "rav1e"
 crate-type = ["staticlib"]
 
 [build-dependencies]
-cbindgen = { git="https://github.com/lu-zero/cbindgen" }
+cbindgen = "0.8"
 
 [dependencies]
 libc = "0.2"

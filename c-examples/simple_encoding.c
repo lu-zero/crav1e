@@ -11,31 +11,73 @@
 int main(int argc, char **argv)
 {
     RaConfig *rac = rav1e_config_default();
+    RaFrame *f = NULL;
+    RaContext *rax = NULL;
+    int ret = -1;
 
-    rav1e_config_parse(rac, "width", "64");
-    rav1e_config_parse(rac, "height", "96");
-    rav1e_config_parse(rac, "speed", "9");
+    if (!rac) {
+        printf("Unable to initialize\n");
+        goto clean;
+    }
 
-    RaContext *rax = rav1e_context_new(rac);
-    RaFrame *f = rav1e_frame_new(rax);
+    ret = rav1e_config_parse(rac, "width", "64");
+    if (ret < 0) {
+        printf("Unable to configure width\n");
+        goto clean;
+    }
+
+    ret = rav1e_config_parse(rac, "height", "96");
+    if (ret < 0) {
+        printf("Unable to configure height\n");
+        goto clean;
+    }
+
+    ret = rav1e_config_parse(rac, "speed", "9");
+    if (ret < 0) {
+        printf("Unable to configure speed\n");
+        goto clean;
+    }
+
+    rax = rav1e_context_new(rac);
+    if (!rax) {
+        printf("Unable to allocate a new context\n");
+        goto clean;
+    }
+
+    f = rav1e_frame_new(rax);
+    if (!f) {
+        printf("Unable to allocate a new frame\n");
+        goto clean;
+    }
 
     for (int i = 0; i < 30; i++) {
         printf("Sending frame\n");
-        rav1e_send_frame(rax, f);
+        ret = rav1e_send_frame(rax, f);
+        if (ret < 0) {
+            printf("Unable to send frame %d\n", i);
+            goto clean;
+        }
     }
 
     for (int i = 0; i < 30; i++) {
         RaPacket *p;
         printf("Encoding frame\n");
-        if (rav1e_receive_packet(rax, &p) == 0) {
+        ret = rav1e_receive_packet(rax, &p);
+        if (ret < 0) {
+            printf("Unable to receive packet %d\n", i);
+            goto clean;
+        } else if (ret == 0) {
             printf("Packet %"PRIu64"\n", p->number);
             rav1e_packet_unref(p);
         }
     }
 
+    ret = 0;
+
+clean:
     rav1e_frame_unref(f);
     rav1e_context_unref(rax);
     rav1e_config_unref(rac);
 
-    return 0;
+    return -ret;
 }

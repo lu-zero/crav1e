@@ -30,6 +30,7 @@ target/$(build_mode)/librav1e.a: Cargo.toml src/lib.rs
 rav1e.pc: data/rav1e.pc.in Makefile Cargo.toml dummy/Cargo.toml dummy/src/lib.rs
 	sed -e "s;@prefix@;$(prefix);" \
 	    -e "s;@libdir@;$(libdir);" \
+	    -e "s;@incdir@;$(incdir);" \
             -e "s;@VERSION@;$(VERSION);" \
             -e "s;@PRIVATE_LIBS@;$$(cd dummy; touch src/lib.rs && cargo rustc --release -- --print native-static-libs 2>&1| grep native-static-libs | cut -d ':' -f 3);" data/rav1e.pc.in > $@
 

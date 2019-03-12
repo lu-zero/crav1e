@@ -8,7 +8,8 @@
 #include <stdio.h>
 #include <inttypes.h>
 
-int main() {
+int main(int argc, char **argv)
+{
     RaConfig *rac = rav1e_config_default();
 
     rav1e_config_parse(rac, "width", "64");
@@ -35,4 +36,6 @@ int main() {
     rav1e_frame_unref(f);
     rav1e_context_unref(rax);
     rav1e_config_unref(rac);
+
+    return 0;
 }

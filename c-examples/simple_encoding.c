@@ -56,6 +56,8 @@ int main(int argc, char **argv)
         if (ret < 0) {
             printf("Unable to send frame %d\n", i);
             goto clean;
+        } else if (ret > 0) {
+            printf("Unable to append frame %d to the internal queue\n", i);
         }
     }
 

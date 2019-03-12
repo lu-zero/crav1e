@@ -14,7 +14,6 @@ int main() {
     rav1e_config_parse(rac, "width", "64");
     rav1e_config_parse(rac, "height", "96");
     rav1e_config_parse(rac, "speed", "9");
-//    rav1e_config_parse(rac, "low_latency", "true");
 
     RaContext *rax = rav1e_context_new(rac);
     RaFrame *f = rav1e_frame_new(rax);

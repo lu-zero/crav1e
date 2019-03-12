@@ -27,7 +27,7 @@ int main() {
     for (int i = 0; i < 30; i++) {
         RaPacket *p;
         printf("Encoding frame\n");
-        if (rav1e_receive_packet(rax, &p) > 0) {
+        if (rav1e_receive_packet(rax, &p) == 0) {
             printf("Packet %"PRIu64"\n", p->number);
             rav1e_packet_unref(p);
         }

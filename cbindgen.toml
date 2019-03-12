@@ -8,7 +8,6 @@ language = "C"
 [parse]
 parse_deps = true
 include = ['rav1e']
-expand = ['rav1e']
 
 [export]
 prefix = "Ra"

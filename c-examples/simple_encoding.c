@@ -20,19 +20,19 @@ int main(int argc, char **argv)
         goto clean;
     }
 
-    ret = rav1e_config_parse(rac, "width", "64");
+    ret = rav1e_config_parse_int(rac, "width", 64);
     if (ret < 0) {
         printf("Unable to configure width\n");
         goto clean;
     }
 
-    ret = rav1e_config_parse(rac, "height", "96");
+    ret = rav1e_config_parse_int(rac, "height", 96);
     if (ret < 0) {
         printf("Unable to configure height\n");
         goto clean;
     }
 
-    ret = rav1e_config_parse(rac, "speed", "9");
+    ret = rav1e_config_parse_int(rac, "speed", 9);
     if (ret < 0) {
         printf("Unable to configure speed\n");
         goto clean;

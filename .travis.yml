@@ -23,11 +23,11 @@ matrix:
 jobs:
   include:
       - name: "Linux build"
-        rust: nightly-2019-02-21
+        rust: stable
         script: make examples && ./simple_encoding
       - name: "macOS build"
         os: osx
-        rust: nightly-2019-02-21
+        rust: stable
         script: make examples && ./simple_encoding
       - name: "Linux build (Rust nightly)"
         rust: nightly

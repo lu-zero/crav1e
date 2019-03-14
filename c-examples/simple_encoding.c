@@ -38,6 +38,30 @@ int main(int argc, char **argv)
         goto clean;
     }
 
+    ret = rav1e_config_set_color_description(rac, 2, 2, 2);
+    if (ret < 0) {
+        printf("Unable to configure color properties\n");
+        goto clean;
+    }
+
+    RaPoint primaries[] = {
+        { .x = 0.68 * (1 << 16),  .y = 0.32 * (1 << 16) },
+        { .x = 0.265 * (1 << 16), .y = 0.69 * (1 << 16) },
+        { .x = 0.15 * (1 << 16),  .y = 0.06 * (1 << 16) },
+    };
+    RaPoint wp = { .x = 0.31268 * (1 << 16), .y = 0.329 * (1 << 16) };
+    ret = rav1e_config_set_mastering_display(rac, primaries, wp, 1000 * (1 << 8), 0 * (1 << 14));
+    if (ret < 0) {
+        printf("Unable to configure mastering display\n");
+        goto clean;
+    }
+
+    ret = rav1e_config_set_content_light(rac, 1000, 0);
+    if (ret < 0) {
+        printf("Unable to configure mastering display\n");
+        goto clean;
+    }
+
     rax = rav1e_context_new(rac);
     if (!rax) {
         printf("Unable to allocate a new context\n");

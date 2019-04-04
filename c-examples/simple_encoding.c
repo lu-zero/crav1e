@@ -74,7 +74,12 @@ int main(int argc, char **argv)
         goto clean;
     }
 
-    for (int i = 0; i < 30; i++) {
+    int limit = 30;
+
+    printf("Encoding %d frames\n", limit);
+
+    /// Feed `limit` frames directly
+    for (int i = 0; i < limit; i++) {
         printf("Sending frame\n");
         ret = rav1e_send_frame(rax, f);
         if (ret < 0) {
@@ -85,9 +90,14 @@ int main(int argc, char **argv)
         }
     }
 
-    for (int i = 0; i < 30 && ret != 0;) {
+    /// Signal the encoder we want to flush
+    rav1e_send_frame(rax, NULL);
+
+    ret = 0;
+
+    /// Test that we cleanly exit once we hit the limit
+    for (int i = 0; i < limit + 5;) {
         RaPacket *p;
-        printf("Encoding frame\n");
         ret = rav1e_receive_packet(rax, &p);
         if (ret < 0) {
             printf("Unable to receive packet %d\n", i);
@@ -95,7 +105,10 @@ int main(int argc, char **argv)
         } else if (ret == 0) {
             printf("Packet %"PRIu64"\n", p->number);
             rav1e_packet_unref(p);
-            i++
+            i++;
+        } else if (ret == RA_ENCODER_STATUS_LIMIT_REACHED) {
+            printf("Limit reached\n");
+            break;
         }
     }
 

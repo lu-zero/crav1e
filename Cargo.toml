@@ -8,7 +8,7 @@ name = "rav1e"
 crate-type = ["staticlib"]
 
 [build-dependencies]
-cbindgen = "0.8"
+cbindgen = "=0.8.4"
 
 [dependencies]
 libc = "0.2"

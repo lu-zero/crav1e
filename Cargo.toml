@@ -5,7 +5,7 @@ authors = ["Luca Barbato <lu_zero@gentoo.org>"]
 
 [lib]
 name = "rav1e"
-crate-type = ["staticlib"]
+crate-type = ["staticlib","cdylib"]
 
 [build-dependencies]
 cbindgen = "=0.8.4"

@@ -17,6 +17,13 @@ else
 cargo_mode_opt:=--${build_mode}
 endif
 
+OS=$(shell uname -s)
+
+SO_NAME_Darwin=librav1e.dylib
+SO_NAME_INSTALL_Darwin=librav1e.$(VERSION).dylib
+SO_NAME_Linux=librav1e.so
+SO_NAME_INSTALL_Linux=librav1e.so.$(VERSION)
+
 all: target/$(build_mode)/librav1e.a rav1e.pc include/rav1e.h
 
 examples: simple_encoding
@@ -40,15 +47,23 @@ rav1e.pc: data/rav1e.pc.in Makefile Cargo.toml
             -e "s;@PRIVATE_LIBS@;$$(rustc --print native-static-libs /dev/null --crate-type staticlib 2>&1| grep native-static-libs | cut -d ':' -f 3);" data/rav1e.pc.in > $@
 
 simple_encoding: c-examples/simple_encoding.c target/$(build_mode)/librav1e.a rav1e.pc
-	$(CC) -g -O0 -std=c99 $< -o $@ -Ltarget/$(build_mode)/ -lrav1e `grep Libs.private rav1e.pc | cut -d ':' -f 2` -Iinclude
+	$(CC) -g -O0 -std=c99 $< -o $@ target/$(build_mode)/librav1e.a `grep Libs.private rav1e.pc | cut -d ':' -f 2` -Iinclude
 
-install: target/$(build_mode)/librav1e.a rav1e.pc include/rav1e.h
+simple_encoding_installed: c-examples/simple_encoding.c target/$(build_mode)/librav1e.a rav1e.pc
+	$(CC) -g -O0 -std=c99 $< -o $@ `pkg-config --cflags --libs rav1e`
+
+
+install: target/$(build_mode)/librav1e.a rav1e.pc include/rav1e.h target/$(build_mode)/$(SO_NAME_$(OS))
 	-mkdir -p $(INCDIR) $(LIBDIR)/pkgconfig
 	cp rav1e.pc $(LIBDIR)/pkgconfig
 	cp target/$(build_mode)/librav1e.a $(LIBDIR)
+	cp target/$(build_mode)/$(SO_NAME_$(OS)) $(LIBDIR)/$(SO_NAME_INSTALL_$(OS))
+	ln -sf $(LIBDIR)/$(SO_NAME_INSTALL_$(OS)) $(LIBDIR)/$(SO_NAME_$(OS))
 	cp include/rav1e.h $(INCDIR)
 
 uninstall:
+	-rm $(LIBDIR)/$(SO_NAME_INSTALL_$(OS))
+	-rm $(LIBDIR)/$(SO_NAME_$(OS))
 	-rm $(LIBDIR)/pkgconfig/rav1e.pc
 	-rm $(LIBDIR)/librav1e.a
 	-rm $(INCDIR)/rav1e.h

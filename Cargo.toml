@@ -12,6 +12,7 @@ cbindgen = "=0.8.4"
 
 [dependencies]
 libc = "0.2"
+num-traits = "0.2"
 
 [dependencies.rav1e]
 git = "https://github.com/xiph/rav1e"

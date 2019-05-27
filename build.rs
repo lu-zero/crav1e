@@ -25,8 +25,8 @@ fn shared_object_link_line() {
         // This is only set up to work on GNU toolchain versions of Rust
         let out_dir = std::path::PathBuf::from("target").join(std::env::var("PROFILE").unwrap());
 
-        println!("{}-Wl,--out-implib,{}", link, out_dir.join("rav1e.dll.a").to_string_lossy());
-        println!("{}-Wl,--output-def,{}", link, out_dir.join("rav1e.def").to_string_lossy());
+        println!("{}-Wl,--out-implib,{}", link, out_dir.join("rav1e.dll.a").display());
+        println!("{}-Wl,--output-def,{}", link, out_dir.join("rav1e.def").display());
     }
 }
 

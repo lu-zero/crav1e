@@ -17,7 +17,11 @@ fn shared_object_link_line() {
         println!("{0}-Wl,-install_name,{1}/librav1e.{2}.{3}.{4}.dylib,-current_version,{2}.{3}.{4},-compatibility_version,{2}",
                 link, libdir, major, minor, micro);
     } else if cfg!(target_os = "windows") {
-        unimplemented!()
+        // This is only set up to work on GNU toolchain versions of Rust
+        let out_dir = std::path::PathBuf::from("target").join(std::env::var("PROFILE").unwrap());
+
+        println!("{}-Wl,--out-implib,{}", link, out_dir.join("rav1e.dll.a").to_string_lossy());
+        println!("{}-Wl,--output-def,{}", link, out_dir.join("rav1e.def").to_string_lossy());
     }
 }
 

@@ -18,11 +18,18 @@ The API is far from stable
 - [x] pkg-conf `.pc` generation
 - [x] Examples
 - [x] Install target
+- [ ] Shared libraries
+  - [x] Linux
+  - [x] macOS
+  - [ ] Windows
+    - [x] `-gnu` target
+    - [ ] `-msvc` target
+
 
 ## Usage
-You may generate the library and the header file using.
+You may generate the library and the header file using a simple `Makefile` or calling `cargo build`.
 
-> Currently it **requires** nightly to expand the macros.
+The Makefile supports installing the library, the header and the `pkg-config` file.
 
 ### Makefile
 A quite simple makefile is provided:

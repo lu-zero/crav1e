@@ -17,9 +17,13 @@ int main(void) {
     for (int i = RA_ENCODER_STATUS_FAILURE;
             i <= RA_ENCODER_STATUS_ENCODED;
             i++) {
-        char  *s  = rav1e_status_to_str(i);
+        char  *s = rav1e_status_to_str(i);
         printf("%d -> %s\n", i, s);
         free(s);
+    }
+
+    if (rav1e_status_to_str(-42) != NULL) {
+        printf("Failure in rejecting invalid values");
     }
 
     return 0;

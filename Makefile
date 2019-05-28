@@ -64,6 +64,9 @@ rav1e.pc: data/rav1e.pc.in Makefile Cargo.toml
 simple_encoding: c-examples/simple_encoding.c target/$(build_mode)/$(STATIC_NAME) rav1e.pc
 	$(CC) -g -O0 -std=c99 $< -o $@ target/$(build_mode)/$(STATIC_NAME) `grep Libs.private rav1e.pc | cut -d ':' -f 2` -Iinclude
 
+status_to_str: c-tests/status_to_str.c target/$(build_mode)/$(STATIC_NAME) rav1e.pc
+	$(CC) -g -O0 -std=c99 $< -o $@ target/$(build_mode)/$(STATIC_NAME) `grep Libs.private rav1e.pc | cut -d ':' -f 2` -Iinclude
+
 simple_encoding_installed: c-examples/simple_encoding.c target/$(build_mode)/$(STATIC_NAME) rav1e.pc
 	$(CC) -g -O0 -std=c99 $< -o $@ `pkg-config --cflags --libs rav1e`
 

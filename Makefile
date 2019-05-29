@@ -1,4 +1,7 @@
-VERSION = 0.1.0
+VERSION_MAJOR = 0
+VERSION_MINOR = 1
+VERSION_PATCH = 0
+VERSION = $(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_PATCH)
 prefix=/usr/local
 
 incdir=$(prefix)/include
@@ -33,8 +36,10 @@ endif
 endif
 
 SO_NAME_Darwin=librav1e.dylib
+SO_NAME_MAJOR_Darwin=librav1e.$(VERSION_MAJOR).dylib
 SO_NAME_INSTALL_Darwin=librav1e.$(VERSION).dylib
 SO_NAME_Linux=librav1e.so
+SO_NAME_MAJOR_Linux=librav1e.so.$(VERSION_MAJOR)
 SO_NAME_INSTALL_Linux=librav1e.so.$(VERSION)
 SO_NAME_INSTALL_Msys=rav1e.dll
 SO_NAME_Msys=rav1e.dll
@@ -78,6 +83,7 @@ install: target/$(build_mode)/$(STATIC_NAME) rav1e.pc include/rav1e.h target/$(b
 	cp target/$(build_mode)/$(SO_NAME_$(OS)) $(LIBDIR)/$(SO_NAME_INSTALL_$(OS))
 ifneq ($(OS),Msys)
 	ln -sf $(LIBDIR)/$(SO_NAME_INSTALL_$(OS)) $(LIBDIR)/$(SO_NAME_$(OS))
+	ln -sf $(LIBDIR)/$(SO_NAME_INSTALL_$(OS)) $(LIBDIR)/$(SO_NAME_MAJOR_$(OS))
 else
 	cp target/$(build_mode)/$(SO_NAME_$(OS)).a $(LIBDIR)/$(SO_NAME_INSTALL_$(OS)).a
 	cp target/$(build_mode)/rav1e.def $(LIBDIR)/rav1e.def

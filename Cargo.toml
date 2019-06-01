@@ -9,6 +9,7 @@ crate-type = ["staticlib","cdylib"]
 
 [build-dependencies]
 cbindgen = "=0.8.4"
+cdylib-link-lines = { version = "0.1", git = "https://github.com/lu-zero/cdylib-link-lines" }
 
 [dependencies]
 libc = "0.2"

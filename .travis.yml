@@ -1,4 +1,5 @@
 language: rust
+rust: stable
 
 addons:
   apt:
@@ -27,14 +28,11 @@ script:
 jobs:
   include:
       - name: "Linux build"
-        rust: stable
       - name: "macOS build"
         os: osx
-        rust: stable
       - name: "Linux build (Rust nightly)"
         rust: nightly
       - name: "Linux build (Cargo)"
-        rust: nightly
         script:
          - cargo build --release
          - ./simple_encoding

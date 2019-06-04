@@ -20,15 +20,21 @@ matrix:
   allow_failures:
   - rust: nightly
 
+script:
+ - make examples
+ - ./simple_encoding
+
 jobs:
   include:
       - name: "Linux build"
         rust: stable
-        script: make examples && ./simple_encoding
       - name: "macOS build"
         os: osx
         rust: stable
-        script: make examples && ./simple_encoding
       - name: "Linux build (Rust nightly)"
         rust: nightly
-        script: make examples && ./simple_encoding
+      - name: "Linux build (Cargo)"
+        rust: nightly
+        script:
+         - cargo build --release
+         - ./simple_encoding

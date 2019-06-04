@@ -9,12 +9,9 @@
 
 ## Status
 
-The API is far from stable
-
 - [x] Basic encoding usage
 - [x] OBU Sequence Header for mkv/mp4 support
 - [x] Documentation
-- [ ] TimeInfo/generic data pinning
 - [x] pkg-conf `.pc` generation
 - [x] Examples
 - [x] Install target
@@ -25,6 +22,7 @@ The API is far from stable
     - [x] `-gnu` target
     - [ ] `-msvc` target
 
+The API is usable and considered stable, requests to extend it can be issued [here](https://github.com/lu-zero/crav1e/issues).
 
 ## Usage
 You may generate the library and the header file using a simple `Makefile` or calling `cargo build`.

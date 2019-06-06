@@ -18,6 +18,7 @@ num-derive = "0.2"
 [dependencies.rav1e]
 git = "https://github.com/xiph/rav1e"
 default-features = false
+features = ["nasm"]
 
 [profile.release]
 debug = true

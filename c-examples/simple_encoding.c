@@ -19,7 +19,7 @@ int main(int argc, char **argv)
         printf("Unable to initialize\n");
         goto clean;
     }
-
+/*
     ret = rav1e_config_parse_int(rac, "width", 64);
     if (ret < 0) {
         printf("Unable to configure width\n");
@@ -31,13 +31,13 @@ int main(int argc, char **argv)
         printf("Unable to configure height\n");
         goto clean;
     }
-
+*/
     ret = rav1e_config_parse_int(rac, "speed", 9);
     if (ret < 0) {
         printf("Unable to configure speed\n");
         goto clean;
     }
-
+/*
     ret = rav1e_config_set_color_description(rac, 2, 2, 2);
     if (ret < 0) {
         printf("Unable to configure color properties\n");
@@ -61,7 +61,7 @@ int main(int argc, char **argv)
         printf("Unable to configure mastering display\n");
         goto clean;
     }
-
+*/
     rax = rav1e_context_new(rac);
     if (!rax) {
         printf("Unable to allocate a new context\n");

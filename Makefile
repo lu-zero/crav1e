@@ -67,7 +67,7 @@ rav1e.pc: data/rav1e.pc.in Makefile Cargo.toml
             -e "s;@PRIVATE_LIBS@;$$(rustc --print native-static-libs /dev/null --crate-type staticlib 2>&1| grep native-static-libs | cut -d ':' -f 3);" data/rav1e.pc.in > $@
 
 simple_encoding: c-examples/simple_encoding.c target/$(build_mode)/$(STATIC_NAME) rav1e.pc
-	$(CC) -g -O0 -std=c99 $< -o $@ target/$(build_mode)/$(STATIC_NAME) `grep Libs.private rav1e.pc | cut -d ':' -f 2` -Iinclude
+	$(CC) -g -O3 -std=c99 $< -o $@ target/$(build_mode)/$(STATIC_NAME) `grep Libs.private rav1e.pc | cut -d ':' -f 2` -Iinclude
 
 status_to_str: c-tests/status_to_str.c target/$(build_mode)/$(STATIC_NAME) rav1e.pc
 	$(CC) -g -O0 -std=c99 $< -o $@ target/$(build_mode)/$(STATIC_NAME) `grep Libs.private rav1e.pc | cut -d ':' -f 2` -Iinclude

@@ -103,7 +103,7 @@ int main(int argc, char **argv)
             printf("Unable to receive packet %d\n", i);
             goto clean;
         } else if (ret == 0) {
-            printf("Packet %"PRIu64"\n", p->number);
+            printf("Packet %"PRIu64"\n", p->input_frameno);
             rav1e_packet_unref(p);
             i++;
         } else if (ret == RA_ENCODER_STATUS_LIMIT_REACHED) {

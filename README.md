@@ -7,6 +7,8 @@
 
 [cbindgen](https://github.com/eqrion/cbindgen)-based API for C/C++ users.
 
+> **NOTE**: [rav1e](https://github.com/xiph/rav1e) integrates with [cargo-c](https://github.com/lu-zero/cargo-c) to directly provide the C-API.
+
 ## Status
 
 - [x] Basic encoding usage

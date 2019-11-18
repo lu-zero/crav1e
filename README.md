@@ -1,4 +1,4 @@
-# C rav1e API
+# C rav1e API - Historical
 
 [![LICENSE](https://img.shields.io/badge/license-BSD2-blue.svg)](LICENSE)
 [![dependency status](https://deps.rs/repo/github/lu-zero/crav1e/status.svg)](https://deps.rs/repo/github/lu-zero/crav1e)
@@ -7,24 +7,17 @@
 
 [cbindgen](https://github.com/eqrion/cbindgen)-based API for C/C++ users.
 
-> **NOTE**: [rav1e](https://github.com/xiph/rav1e) integrates with [cargo-c](https://github.com/lu-zero/cargo-c) to directly provide the C-API.
+---
+
+
+> **NOTE**: [rav1e](https://github.com/xiph/rav1e) integrates with [cargo-c](https://github.com/lu-zero/cargo-c) to directly provide the C-API. From the release 0.1.0 you should use *cargo-c* and rav1e directly.
+
+
+---
 
 ## Status
 
-- [x] Basic encoding usage
-- [x] OBU Sequence Header for mkv/mp4 support
-- [x] Documentation
-- [x] pkg-conf `.pc` generation
-- [x] Examples
-- [x] Install target
-- [ ] Shared libraries
-  - [x] Linux
-  - [x] macOS
-  - [ ] Windows
-    - [x] `-gnu` target
-    - [ ] `-msvc` target
-
-The API is usable and considered stable, requests to extend it can be issued [here](https://github.com/lu-zero/crav1e/issues).
+The C-API is now part of [rav1e](https://github.com/xiph/rav1e/#building-the-c-api). **DO NOT USE THIS REPOSITORY**
 
 ## Usage
 You may generate the library and the header file using a simple `Makefile` or calling `cargo build`.
